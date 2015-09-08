@@ -36,7 +36,6 @@ class Current_Order
 			:upload => 1,
       :rm => 2,
 			:return => return_url,
-      :rm => 2,
 			# :invoice => 15,
       :notify_url => @user.email,
       "amount_#{@ordered_items.length+1}" => vat,
