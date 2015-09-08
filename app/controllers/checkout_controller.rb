@@ -14,10 +14,11 @@ class CheckoutController < ApplicationController
       @current_order.update_order(session[:order], order_params)
       if @current_order.save_order(@current_user)
         flash[:success] = "Your order has been successfully placed."
-        OrderWorker.perform_async(@current_user.id, @current_order) 
         redirect_to root_path
+        OrderWorker.perform_async(@current_user.id, @current_order) 
       else
         flash[:error] = "An error occured while saving your order. Please try again."
+        redirect_to carts_path
       end
     end
   end
